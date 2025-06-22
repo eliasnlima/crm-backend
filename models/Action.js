@@ -7,6 +7,10 @@ const ActionSchema = new Schema({
     client: {
         type: Schema.Types.ObjectId,
         ref: 'Client'
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 

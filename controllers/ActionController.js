@@ -5,7 +5,7 @@ class ActionController{
 
     async store(req, res){
 
-        const { titulo, descricao, client } = req.body
+        const { descricao, client } = req.body
         const { user } = req.headers
 
         const client_id = await Client.findOne({ _id: client })
@@ -15,7 +15,7 @@ class ActionController{
         }
 
         try {
-            const action = await Action.create({ titulo, descricao, client, user})
+            const action = await Action.create({ descricao, client, user})
 
             return res.status(200).json({ action})
         } catch (err){

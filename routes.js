@@ -4,6 +4,7 @@ import SessionController from "./controllers/SessionController.js";
 
 import auth from "./middlewares/auth.js";
 import ClientController from "./controllers/ClientController.js";
+import ActionController from "./controllers/ActionController.js"
 
 const routes = new Router()
 
@@ -15,6 +16,8 @@ routes.post('/login', SessionController.login)
 routes.use(auth)
 
 routes.post('/client', ClientController.store)
+routes.post('/action', ActionController.store)
+
 
 
 export default routes;

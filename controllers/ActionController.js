@@ -23,6 +23,29 @@ class ActionController{
         }
         
     }
+
+    async index(req, res){
+
+        const { clientId } = req.params
+
+        try {
+            const actions = await Action.find({ client: clientId}).populate('client')
+            return res.json({actions})
+        } catch (err){
+            return res.status(400).json({ error: "Erro ao buscar actions do cliente!"})
+        }
+        
+    }
+
+    async show(req, res){
+
+        const { user } = req.headers
+        
+        const actions = await Action.find({ user: user }).populate('client')
+
+        return res.json({ actions })
+
+    }
 }
 
 export default new ActionController()

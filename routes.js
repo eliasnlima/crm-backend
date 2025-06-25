@@ -16,8 +16,12 @@ routes.post('/login', SessionController.login)
 routes.use(auth)
 
 routes.post('/client', ClientController.store)
+routes.delete('/client/remove', ClientController.delete)
+routes.get('/clients/:userId', ClientController.show)
+routes.put('/client/:clientId', ClientController.update)
+
 routes.post('/action', ActionController.store)
-
-
+routes.get('/client/:clientId/actions', ActionController.index)
+routes.get('/action/user', ActionController.show)
 
 export default routes;

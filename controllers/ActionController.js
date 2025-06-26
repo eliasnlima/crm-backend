@@ -6,7 +6,7 @@ class ActionController{
     async store(req, res){
 
         const { descricao, client } = req.body
-        const { user } = req.headers
+        const { user } = req.userId
 
         const client_id = await Client.findOne({ _id: client })
 
@@ -39,7 +39,7 @@ class ActionController{
 
     async show(req, res){
 
-        const { user } = req.headers
+        const { user } = req.userId
         
         const actions = await Action.find({ user: user }).populate('client')
 

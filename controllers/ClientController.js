@@ -48,6 +48,17 @@ class ClientController{
 
         return res.json({ message: "Atualizado!"})
     }
+
+    async index(req, res){
+        
+        const { clientId } = req.params
+
+        const client = await Client.findOne({_id: clientId})
+
+        return res.json({client})
+
+
+    }
 }
 
 export default new ClientController()

@@ -19,6 +19,8 @@ routes.post('/client', ClientController.store)
 routes.delete('/client/remove', ClientController.delete)
 routes.get('/clients', ClientController.show)
 routes.put('/client/:clientId', ClientController.update)
+routes.get('/client/:clientId', ClientController.index)
+
 
 routes.post('/action', ActionController.store)
 routes.get('/client/:clientId/actions', ActionController.index)

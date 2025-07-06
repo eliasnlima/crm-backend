@@ -6,7 +6,9 @@ const ClientSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    } 
+    },
+    fone: String,
+    email: String
 })
 
 export default model("Client", ClientSchema)

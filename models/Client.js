@@ -8,7 +8,12 @@ const ClientSchema = new Schema({
         ref: 'User'
     },
     fone: String,
-    email: String
+    email: String,
+    status: {
+        type: String,
+        enum: ["Prospecção", "Cliente Ativo", "Reativado", "Em negociação", "Vazio"],
+        default: 'Vazio'
+    }
 })
 
 export default model("Client", ClientSchema)

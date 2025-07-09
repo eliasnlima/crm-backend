@@ -15,10 +15,10 @@ class ClientController{
 
     async store(req, res){
 
-        const { nome, CNPJ, fone, email } = req.body
+        const { nome, CNPJ, fone, email, status } = req.body
         const { user } = req.userId
 
-        const client = await Client.create({ nome, CNPJ, user, fone, email })
+        const client = await Client.create({ nome, CNPJ, user, fone, email, status })
 
         return res.status(201).json({ message: "Cliente cadastrado com sucesso", client})
 
@@ -57,6 +57,16 @@ class ClientController{
 
         return res.json({client})
 
+
+    }
+
+    async statusClient(req, res){
+        
+        const { clientId } = req.params
+        const { status } = req.body 
+        
+        const client = await Client.findByIdAndUpdate(clientId, { status }, {new: true})
+        return res.json({client})
 
     }
 }

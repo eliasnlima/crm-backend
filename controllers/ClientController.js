@@ -15,10 +15,10 @@ class ClientController{
 
     async store(req, res){
 
-        const { nome, CNPJ, fone, email, status } = req.body
+        const { nome, CNPJ, fone, email, status, codigo } = req.body
         const { user } = req.userId
 
-        const client = await Client.create({ nome, CNPJ, user, fone, email, status })
+        const client = await Client.create({ nome, CNPJ, user, fone, email, status, codigo })
 
         return res.status(201).json({ message: "Cliente cadastrado com sucesso", client})
 

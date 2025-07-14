@@ -14,6 +14,10 @@ const ClientSchema = new Schema({
         type: String,
         enum: ["Prospecção", "Cliente Ativo", "Reativado", "Em negociação", "Vazio"],
         default: 'Vazio'
+    },
+    proxInt: {
+        type: Date,
+        default: null
     }
 })
 

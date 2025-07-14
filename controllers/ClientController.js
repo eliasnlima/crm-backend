@@ -69,6 +69,16 @@ class ClientController{
         return res.json({client})
 
     }
+
+    async proxInt( req, res){
+
+        const { clientId } = req.params
+        const { proxInt } = req.body
+
+        const prox = await Client.findByIdAndUpdate(clientId, { proxInt }, {new: true})
+
+        return res.json({prox})
+    }
 }
 
 export default new ClientController()

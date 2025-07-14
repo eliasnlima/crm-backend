@@ -21,6 +21,7 @@ routes.get('/clients', ClientController.show)
 routes.put('/client/:clientId', ClientController.update)
 routes.get('/client/:clientId', ClientController.index)
 routes.put('/clientStatus/:clientId', ClientController.statusClient )
+routes.put('/proxInt/:clientId', ClientController.proxInt)
 
 
 routes.post('/action', ActionController.store)

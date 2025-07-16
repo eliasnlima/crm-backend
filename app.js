@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
+
 dotenv.config()
 
 class App{
@@ -22,6 +23,7 @@ class App{
 
     routes(){
         this.server.use(routes)
+        
     }
 
     database(){

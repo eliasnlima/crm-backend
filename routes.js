@@ -6,6 +6,8 @@ import auth from "./middlewares/auth.js";
 import ClientController from "./controllers/ClientController.js";
 import ActionController from "./controllers/ActionController.js"
 
+import importClientsRoutes from './routes/importClient.js'
+
 const routes = new Router()
 
 routes.post('/user', UserController.store )
@@ -15,6 +17,7 @@ routes.post('/login', SessionController.login)
 
 routes.use(auth)
 
+routes.use(importClientsRoutes)
 routes.post('/client', ClientController.store)
 routes.delete('/client/remove', ClientController.delete)
 routes.get('/clients', ClientController.show)

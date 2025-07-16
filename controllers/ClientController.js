@@ -7,7 +7,7 @@ class ClientController{
         
         const { userId } = req.userId
 
-        const clients = await Client.find({ user: userId})
+        const clients = await Client.find({ user: req.userId})
 
         return res.json({clients})
 
@@ -16,7 +16,7 @@ class ClientController{
     async store(req, res){
 
         const { nome, CNPJ, fone, email, status, codigo } = req.body
-        const { user } = req.userId
+        const user = req.userId
 
         const client = await Client.create({ nome, CNPJ, user, fone, email, status, codigo })
 

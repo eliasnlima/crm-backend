@@ -1,6 +1,7 @@
 import Client from "../models/Client.js"
 import Action from "../models/Action.js"
 
+
 class ClientController{
 
     async show(req, res){

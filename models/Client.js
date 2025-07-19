@@ -1,3 +1,4 @@
+
 import { Schema, model } from "mongoose";
 
 const ClientSchema = new Schema({
@@ -20,7 +21,7 @@ const ClientSchema = new Schema({
         default: null
     },
     grupoEconomico: {
-        type: Number,
+        type: String,
         default: null
     }
 })

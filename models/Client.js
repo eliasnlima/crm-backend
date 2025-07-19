@@ -18,6 +18,10 @@ const ClientSchema = new Schema({
     proxInt: {
         type: Date,
         default: null
+    },
+    grupoEconomico: {
+        type: Number,
+        default: null
     }
 })
 

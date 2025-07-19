@@ -24,7 +24,12 @@ router.post('/import-clients', authMiddleware, upload.single('file'), async (req
         console.log('📄 Dados lidos do CSV:', results) // VERIFICAR O QUE ESTÁ SENDO LIDO
 
         // 🔴 TESTE: Filtrar dados vazios ou inválidos
-        const filtrados = results.filter(d => d.nome && d.user)
+        const filtrados = results.filter(d => d.nome && d.user) 
+        .map(d => {
+              if (d.grupoEconomico === '') d.grupoEconomico = null
+              else if (d.grupoEconomico) d.grupoEconomico = Number(d.grupoEconomico)
+
+               return d})
 
         const inserted = await Client.insertMany(filtrados)
         console.log('✅ Clientes inseridos:', inserted.length)

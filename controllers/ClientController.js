@@ -55,8 +55,21 @@ class ClientController{
 
         const client = await Client.findOne({_id: clientId})
 
-        return res.json({client})
+     
 
+         let grupoClientes = [];
+
+    if (client.grupoEconomico) {
+      grupoClientes = await Client.find({
+        grupoEconomico: client.grupoEconomico,
+        _id: { $ne: client._id } 
+      });
+    }
+
+    return res.json({
+      client,
+      grupoClientes
+    });
 
     }
 

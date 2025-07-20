@@ -24,6 +24,23 @@ class ActionController{
         
     }
 
+    async storeG (req, res){
+
+        const { user } = req.userId
+        const { grupo, descricao } = req.body
+
+        const clients = await Client.find({ grupoEconomico: grupo})
+
+        const actions = await Promise.all(
+            clients.map(client =>
+                Action.create({ descricao, client: client._id, user})
+            )
+        )
+
+        return res.json({actions})
+
+    }
+
     async index(req, res){
 
         const { clientId } = req.params

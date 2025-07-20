@@ -8,8 +8,11 @@ const ActionSchema = new Schema({
         ref: 'Client'
     },
     user: {
+        
         type: Schema.Types.ObjectId,
         ref: 'User'
+        
+        
     }
 })
 

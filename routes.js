@@ -25,6 +25,7 @@ routes.put('/client/:clientId', ClientController.update)
 routes.get('/client/:clientId', ClientController.index)
 routes.put('/clientStatus/:clientId', ClientController.statusClient )
 routes.put('/proxInt/:clientId', ClientController.proxInt)
+routes.put('/intGrupo/:grupo', ClientController.proxIntGrupo)
 
 routes.put('/grupoStatus/:grupo', ClientController.statusGrupo)
 

@@ -111,6 +111,23 @@ class ClientController{
 
         return res.json({prox})
     }
+
+    async proxIntGrupo(req, res){
+
+        const { grupo } = req.params
+        const { proxInt } = req.body 
+        
+        const clients = await Client.find({ grupoEconomico: grupo})
+
+        const int = await Promise.all(
+                    clients.map(client =>
+                        Client.findByIdAndUpdate(client._id, { proxInt }, {new: true})
+                    )
+                )
+
+        return res.json({int})
+
+    }
 }
 
 export default new ClientController()

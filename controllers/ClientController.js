@@ -128,6 +128,8 @@ class ClientController{
         return res.json({int})
 
     }
+
+  
 }
 
 export default new ClientController()

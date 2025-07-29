@@ -12,7 +12,7 @@ const router = express.Router()
 router.post('/import-clients', authMiddleware, upload.single('file'), async (req, res) => {
   const results = []
 
-  console.log('🟡 Arquivo recebido:', req.file) 
+  console.log('🟡 Arquivo recebido:', req.file)
 
   fs.createReadStream(req.file.path)
     .pipe(csvParser({ separator: ';' }))
@@ -22,19 +22,34 @@ router.post('/import-clients', authMiddleware, upload.single('file'), async (req
     })
     .on('end', async () => {
       try {
-        console.log('📄 Dados lidos do CSV:', results) 
-        
-        const filtrados = results.filter(d => d.nome && d.user)
-  .map(d => {
-    
-    if (d.grupoEconomico === '') d.grupoEconomico = null
-    else if (d.grupoEconomico) d.grupoEconomico = String(d.grupoEconomico).trim()
+        console.log('📄 Dados lidos do CSV:', results)
 
-    return d
-  })
+        const filtrados = results
+          .filter(d => d.nome && d.CNPJ && d.user) // agora exigimos CNPJ
+          .map(d => {
+            if (d.grupoEconomico === '') d.grupoEconomico = null
+            else if (d.grupoEconomico) d.grupoEconomico = String(d.grupoEconomico).trim()
+
+            d.CNPJ = d.CNPJ.replace(/\D/g, '') // remove pontuação do CNPJ
+            return d
+          })
 
         for (let cliente of filtrados) {
-          await Client.create(cliente);
+          const updateFields = {
+            nome: cliente.nome,
+            codigo: cliente.codigo,
+            fone: cliente.fone,
+            status: cliente.status,
+            grupoEconomico: cliente.grupoEconomico,
+            user: cliente.user,
+            email: cliente.email
+          }
+
+          await Client.findOneAndUpdate(
+            { CNPJ: cliente.CNPJ, user: cliente.user }, // identificador único
+            { $set: updateFields },
+            { upsert: true, new: true }
+          )
         }
 
         res.status(200).json({ message: 'Importação concluída', count: filtrados.length })

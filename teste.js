@@ -24,6 +24,9 @@ router.post('/import-clients', authMiddleware, upload.single('file'), async (req
       try {
         console.log('📄 Dados lidos do CSV:', results) 
         
+
+
+        
         const filtrados = results.filter(d => d.nome && d.user)
   .map(d => {
     

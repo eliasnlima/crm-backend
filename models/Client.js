@@ -13,7 +13,7 @@ const ClientSchema = new Schema({
     email: String,
     status: {
         type: String,
-        enum: ["Prospecção", "Cliente Ativo", "Reativado", "Em negociação", "Vazio"],
+        enum: ["Prospecção", "Em negociação", "Cliente novo", "Acompanhamento", "Inativo", "Reativado", "Tirar da carteira", "Vazio"],
         default: 'Vazio'
     },
     proxInt: {

@@ -43,11 +43,11 @@ router.post('/import-clients', authMiddleware, upload.single('file'), async (req
             grupoEconomico: cliente.grupoEconomico,
             user: cliente.user,
             email: cliente.email,
-            nomeGrupo: cliente.nomeGrupo
+            nomeGrupo: cliente.nomeGrupo // add group name
           }
 
           await Client.findOneAndUpdate(
-            { CNPJ: cliente.CNPJ, user: cliente.user }, // identificador único
+            { CNPJ: cliente.CNPJ, user: cliente.user }, 
             { $set: updateFields },
             { upsert: true, new: true }
           )

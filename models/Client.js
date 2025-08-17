@@ -23,6 +23,10 @@ const ClientSchema = new Schema({
     grupoEconomico: {
         type: String,
         default: null
+    },
+    nomeGrupo: {
+        type: String,
+        default: null
     }
 })
 

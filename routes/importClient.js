@@ -42,7 +42,8 @@ router.post('/import-clients', authMiddleware, upload.single('file'), async (req
             status: cliente.status,
             grupoEconomico: cliente.grupoEconomico,
             user: cliente.user,
-            email: cliente.email
+            email: cliente.email,
+            nomeGrupo: cliente.nomeGrupo
           }
 
           await Client.findOneAndUpdate(

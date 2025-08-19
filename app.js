@@ -19,6 +19,11 @@ class App{
     middlewares(){
         this.server.use(cors())
         this.server.use(express.json())
+
+        this.server.use((req, res, next) => {
+            res.setHeader("Content-Type", "application/json; charset=utf-8")
+            next()
+        })
     }
 
     routes(){

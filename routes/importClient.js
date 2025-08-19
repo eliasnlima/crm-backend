@@ -4,6 +4,7 @@ import csvParser from 'csv-parser'
 import fs from 'fs'
 import Client from '../models/Client.js'
 import authMiddleware from '../middlewares/auth.js'
+import iconv from 'iconv-lite'
 
 
 const upload = multer({ dest: 'uploads/' })
@@ -15,6 +16,9 @@ router.post('/import-clients', authMiddleware, upload.single('file'), async (req
   console.log('🟡 Arquivo recebido:', req.file)
 
   fs.createReadStream(req.file.path)
+
+    .pipe(iconv.decodeStream('latin1')) 
+    .pipe(iconv.encodeStream('utf-8'))
     .pipe(csvParser({ separator: ';' }))
     .on('data', (data) => {
       data.user = req.userId

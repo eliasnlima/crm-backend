@@ -16,8 +16,7 @@ router.post('/import-clients', authMiddleware, upload.single('file'), async (req
   console.log('🟡 Arquivo recebido:', req.file)
 
   fs.createReadStream(req.file.path)
-
-    .pipe(iconv.decodeStream('latin1')) 
+ 
     .pipe(iconv.encodeStream('utf-8'))
     .pipe(csvParser({ separator: ';' }))
     .on('data', (data) => {
